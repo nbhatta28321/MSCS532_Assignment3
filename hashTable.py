@@ -31,6 +31,7 @@ def search(key):
         for i,j in enumerate(array_list[hashed_key]):
               if key == j[0]: # if the hashed key is found then check it loops through the list to get the key
                     print(f"The value for {key} is {j[1]}")
+                    return
               else:
                     print("Key not found while searching")
                           
@@ -41,8 +42,10 @@ def delete(key):
         print("Deleting key", hashed_key)
 
         for i, j in enumerate(array_list[hashed_key]):
-            if key == j[i]: # if the hashed key is found then check it loops through the list to get the key and delete the tuple
+            if key == j[0]: # if the hashed key is found then check it loops through the list to get the key and delete the tuple
                    del array_list[hashed_key][i]
+                   print("After Deleting key", array_list)
+                   return
             else:
                 print("Key not found")        
   
@@ -53,10 +56,10 @@ insert(1, "cat")
 insert(2, "dog")
 insert(3, "sheep")
 insert(4, "tiger")
-insert(5, "w")
-insert(6, "e")
+insert(5, "whale")
+insert(6, "elephant")
 
 search(1)
 
-delete(1)
+delete(6)
 
