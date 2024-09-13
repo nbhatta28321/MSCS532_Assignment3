@@ -1,3 +1,11 @@
+# How to run:
+```
+- python3 ./randomizedQuickSort.py 
+```
+```
+- python3 ./hashTable.py
+```
+
 # Randomized Quicksort
 
 Randomized Quick Sort is considered better for sorting using the quicksort algorithm. The larger array is broken down into multiple subarrays recursively until all the elements are sorted, and then it's merged to give the sorted elements. Every time, the arrays are partitioned into subarrays, and new pivot elements are chosen, which determines the time complexity of the running program. When the pivot elements are n unfavorable, the worst-case scenario can reach O(n2). However, with proper pivot elements chosen, it can be brought down to O(nlogn). Whenever the pivot is chosen randomly, it is far less likely that the algorithm will give the worst case. In contrast, when the pivot is always taken from a certain index, then in case of the input being in an already sorted format, the pivot has to interact with n subarrays that need to be iterated n times. In the same scenario, if the pivot is randomly chosen from the subarrays, then it is less likely that the random variable is the lowest or highest in the subarray.
