@@ -8,12 +8,12 @@ b = 5 # random value from {0,1,2 ... p-1}
 
 def hash_func(key):
           # Using universal family of hash function where is k is key of the hash table
-          # size is the number of slot available for storage       
+          # size is the number of slot available for storage     
         return ((a * key + b) % primme_num) % size
         
 def insert(key, value):
         if len(map) >= size:
-               print("Size exceeded for the hashTable")
+               print("Size exceeded for the hashTable") #Could implement dynamic increse in side
                return
         hashed_key = hash_func(key)
 
@@ -29,7 +29,7 @@ def search(key):
         print("Searching key", hashed_key)
 
         for i,j in enumerate(array_list[hashed_key]):
-              if key == j[0]:
+              if key == j[0]: # if the hashed key is found then check it loops through the list to get the key
                     print(f"The value for {key} is {j[1]}")
               else:
                     print("Key not found while searching")
@@ -41,7 +41,7 @@ def delete(key):
         print("Deleting key", hashed_key)
 
         for i, j in enumerate(array_list[hashed_key]):
-            if key == j[i]:
+            if key == j[i]: # if the hashed key is found then check it loops through the list to get the key and delete the tuple
                    del array_list[hashed_key][i]
             else:
                 print("Key not found")        
