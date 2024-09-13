@@ -1,10 +1,7 @@
-import random
-import time
-import tracemalloc
-
 
 size = 5 #size of the hash table
 map={} #empty hash table
+array_list=[[] for i in range(size)]
 primme_num = 6700417 # larger prime number
 a = 6 # random value from {1,2 ... p-1}
 b = 5 # random value from {0,1,2 ... p-1}
@@ -18,56 +15,40 @@ def insert(key, value):
         if len(map) >= size:
                print("Size exceeded for the hashTable")
                return
-        k = hash_func(key)
-        map[k] = value
+        hashed_key = hash_func(key)
+
+        for i, j in enumerate(array_list[hashed_key]): #loop through the array at index "hashed_key"
+               if key == j[0]: #if the input key matches any key in the tuple, replace the key, value pair
+                    array_list[hashed_key][i] = ((key, value))
+                    return
+
+        array_list[hashed_key].append((key, value)) #in case when the k is first hash value, append the tuple at index "hashed_key"
    
 def search(key):
-        k = hash_func(key)
-        print("Searching key", k)
+        hashed_key = hash_func(key)
+        print("Searching key", hashed_key)
 
-        if k in map:
-            print(map[k])
-        else:
-            print("Key not found while searching")
-
+        for i,j in enumerate(array_list[hashed_key]):
+              if key == j[0]:
+                    print(f"The value for {key} is {j[1]}")
+              else:
+                    print("Key not found while searching")
+                          
 def delete(key):
-        k = hash_func(key)
-        print("Mappp", map)
-        print("Mappp lenght", len(map))
+        print("Before Deleting key", array_list)
         
-        print(f"Checing deleting key {key} to {k}")
+        hashed_key = hash_func(key)
+        print("Deleting key", hashed_key)
 
-        if k in map:
-                print("deleting key", k)
-                map.pop(k)
-                print("After delete", map)
-        else:
-            print("Key not found")        
-   
-
-    
-# function to do the merge sort for already sorted array
-# tracemalloc.start()
-# start = time.time()
-# quick_sort(list(range(100)))
-# end = time.time()
-# current, peak_memory = tracemalloc.get_traced_memory()
-# tracemalloc.clear_traces()
-# print("Execution time for sorted numbers is {} with memory usage of {}".format(end-start, peak_memory / (1024 * 1024)))
+        for i, j in enumerate(array_list[hashed_key]):
+            if key == j[i]:
+                   del array_list[hashed_key][i]
+            else:
+                print("Key not found")        
+  
+        print("After Deleting key", array_list)
 
 
-# tracemalloc.start()
-# start = time.time()
-# a = quick_sort([])
-# print("final", a)
-# end = time.time()
-# current, peak_memory = tracemalloc.get_traced_memory()
-# tracemalloc.clear_traces()
-# print("Execution time for reverse sorted numbers is {} with memory usage of {}".format(end-start, peak_memory / (1024 * 1024)))
-
-
-tracemalloc.start()
-start = time.time()
 insert(1, "cat")
 insert(2, "dog")
 insert(3, "sheep")
@@ -75,11 +56,7 @@ insert(4, "tiger")
 insert(5, "w")
 insert(6, "e")
 
-search(9)
-delete(7)
-# a =quick_sort([random.randint(1, 5) for _ in range(100)])
-# print( "final", map)
-end = time.time()
-current, peak_memory = tracemalloc.get_traced_memory()
-tracemalloc.clear_traces()
-print("Execution time for random numbers is {} with memory usage of {}".format(end-start, peak_memory / (1024 * 1024)))
+search(1)
+
+delete(1)
+
